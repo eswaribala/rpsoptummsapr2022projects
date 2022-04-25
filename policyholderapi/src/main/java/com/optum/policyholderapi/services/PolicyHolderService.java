@@ -43,7 +43,12 @@ public class PolicyHolderService {
 	
 	//update
 	
-	
+	public PolicyHolder updatePolicyHolder(long policyNo, long phoneNo, String email) {
+		PolicyHolder policyHolder=this.getPolicyHolderById(policyNo);
+		policyHolder.setPhoneNo(phoneNo);
+		policyHolder.setEmail(email);
+		return this.policyHolderRepo.save(policyHolder);		
+	}
 	
 
 }
