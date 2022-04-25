@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.bohnman.squiggly.Squiggly;
+import com.github.bohnman.squiggly.util.SquigglyUtils;
 import com.google.gson.Gson;
 import com.optum.policyholderapi.models.PolicyHolder;
 import com.optum.policyholderapi.services.PolicyHolderService;
@@ -98,5 +102,33 @@ public class PolicyHolderController {
 					
 					
 				}
+				
+				
+				//squiggly filter
+				
+				@GetMapping(value="/v1.0/filters/{policyNo}")
+				public ResponseEntity<String> getPolicyHolderByFields(@PathVariable("policyNo") long policyNo,
+						@RequestParam(name = "fields", required = false) String fields){
+						
+			    	
+			    	PolicyHolder policyHolder = this.policyHolderService.getPolicyHolderById(policyNo);
+			    	
+			    	if(policyHolder!=null)
+			    	{
+			    		//fields refers to runtime selection
+			    		ObjectMapper mapper = Squiggly.init(new ObjectMapper(), fields);  		
+						return ResponseEntity.status(HttpStatus.OK).body(SquigglyUtils.stringify(mapper, policyHolder));
+
+			    	}
+			    	else
+			    	{
+				         
+					        
+				         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("PolicyHolder Not found");
+			    	}
+
+					
+					
+				}		
 
 }
