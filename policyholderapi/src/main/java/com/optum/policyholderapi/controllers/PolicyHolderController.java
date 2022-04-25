@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,5 +77,26 @@ public class PolicyHolderController {
 						.body("Policy Holder not found....");
 			
 		}
+		
+		//update policy by policy no
+				@PutMapping({"/v1.0/{policyNo}/{phoneNo}/{email}"})
+				public ResponseEntity<String> updatePolicyByPolicyHolderNo(
+						@PathVariable("policyNo") long policyNo,
+						@PathVariable("phoneNo") long phoneNo,
+						@PathVariable("email") String email) {
+				 
+					PolicyHolder policyHolderObj=	this.policyHolderService.updatePolicyHolder(policyNo, phoneNo, email);
+
+					if(policyHolderObj!=null) 
+						return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(policyHolderObj));
+					
+					else
+						
+						return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+								.body("Policy Holder not found....");
+					
+					
+					
+				}
 
 }
