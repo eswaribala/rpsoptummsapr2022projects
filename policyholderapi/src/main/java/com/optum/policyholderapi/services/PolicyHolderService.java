@@ -33,7 +33,10 @@ public class PolicyHolderService {
 	//delete
 	
 	public boolean deletePolicyHolderById(long policyNo) {
-		this.policyHolderRepo.deleteById(policyNo);
+		if(this.getPolicyHolderById(policyNo)!=null)
+		  this.policyHolderRepo.deleteById(policyNo);
+		else
+			return false;
 		if(this.getPolicyHolderById(policyNo)==null)
 			return true;
 		else
