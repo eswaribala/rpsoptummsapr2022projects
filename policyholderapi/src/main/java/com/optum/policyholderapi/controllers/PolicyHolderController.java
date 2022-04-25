@@ -26,13 +26,13 @@ public class PolicyHolderController {
 	private Gson gson;
 	//adding policy holder
 	@PostMapping({"/v1.0"})
-	public ResponseEntity<String> addPolicyHolder(@RequestBody PolicyHolder policyHolder){
+	public ResponseEntity<?> addPolicyHolder(@RequestBody PolicyHolder policyHolder){
 		gson=new Gson();
 		PolicyHolder policyHolderObj=this.policyHolderService.addPolicyHolder
 				(policyHolder);
 		
 		if(policyHolderObj!=null) 
-			return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(policyHolderObj));
+			return ResponseEntity.status(HttpStatus.OK).body(policyHolderObj);
 		
 		else
 			
@@ -49,11 +49,11 @@ public class PolicyHolderController {
 	
 	//Retrieve policy by policy no
 	@GetMapping({"/v1.0/{policyNo}"})
-	public ResponseEntity<String> getPolicyByPolicyHolderNo(@PathVariable("policyNo") long policyNo) {
+	public ResponseEntity<?> getPolicyByPolicyHolderNo(@PathVariable("policyNo") long policyNo) {
 	  PolicyHolder policyHolderObj=	this.policyHolderService.getPolicyHolderById(policyNo);
 
 		if(policyHolderObj!=null) 
-			return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(policyHolderObj));
+			return ResponseEntity.status(HttpStatus.OK).body(policyHolderObj);
 		
 		else
 			
@@ -80,7 +80,7 @@ public class PolicyHolderController {
 		
 		//update policy by policy no
 				@PutMapping({"/v1.0/{policyNo}/{phoneNo}/{email}"})
-				public ResponseEntity<String> updatePolicyByPolicyHolderNo(
+				public ResponseEntity<?> updatePolicyByPolicyHolderNo(
 						@PathVariable("policyNo") long policyNo,
 						@PathVariable("phoneNo") long phoneNo,
 						@PathVariable("email") String email) {
@@ -88,7 +88,7 @@ public class PolicyHolderController {
 					PolicyHolder policyHolderObj=	this.policyHolderService.updatePolicyHolder(policyNo, phoneNo, email);
 
 					if(policyHolderObj!=null) 
-						return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(policyHolderObj));
+						return ResponseEntity.status(HttpStatus.OK).body(policyHolderObj);
 					
 					else
 						

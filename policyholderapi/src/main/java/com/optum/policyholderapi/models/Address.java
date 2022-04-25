@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.ForeignKey;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +25,7 @@ import lombok.NoArgsConstructor;
 public class Address {
     @Id
     @Column(name="Address_Id")
+    @ApiModelProperty(hidden = true)
 	private long addressId;
     @Column(name="Door_No",nullable = false,length = 4)
 	private String doorNo;

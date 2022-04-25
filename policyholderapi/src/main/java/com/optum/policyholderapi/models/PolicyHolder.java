@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class PolicyHolder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Policy_No")
+    @ApiModelProperty(hidden = true)
 	private long policyNo;
 	@Embedded
     private Period insurancePeriod;
