@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 public class FullName {
     @Column(name="First_Name",nullable = false,length = 50) 
 	private String firstName;
-    @Column(name="First_Name",nullable = true,length = 50) 
+    @Column(name="Middle_Name",nullable = true,length = 50) 
 	private String middleName;
-    @Column(name="First_Name",nullable = false,length = 50) 
+    @Column(name="Last_Name",nullable = false,length = 50) 
 	private String lastName;
 }

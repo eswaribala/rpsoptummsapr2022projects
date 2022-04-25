@@ -2,10 +2,12 @@ package com.optum.policyholderapi.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.ForeignKey;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +17,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name="Address")
 public class Address {
     @Id
     @Column(name="Address_Id")
