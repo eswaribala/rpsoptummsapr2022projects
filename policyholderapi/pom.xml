@@ -108,7 +108,7 @@
 			</dependency>
 		
 		<!-- graphql -->
-		<!-- <dependency>
+		<dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-spring-boot-starter</artifactId>
             <version>5.0.2</version>
@@ -129,7 +129,7 @@
 			<artifactId>antlr4-runtime</artifactId>
 			<version>4.7.1</version>
 			<scope>compile</scope>
-		</dependency> -->
+		</dependency> 
 		
         
 		

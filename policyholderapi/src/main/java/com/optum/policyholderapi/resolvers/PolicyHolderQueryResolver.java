@@ -1,5 +1,5 @@
-package com.optum.policyholderapi.queries;
-/*
+package com.optum.policyholderapi.resolvers;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +9,18 @@ import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.optum.policyholderapi.models.PolicyHolder;
 import com.optum.policyholderapi.services.PolicyHolderService;
 
+
 @Component
-public class PolicyHolderQueryResolver implements GraphQLQueryResolver{
+public class PolicyHolderQueryResolver implements  GraphQLQueryResolver{
     @Autowired
 	private PolicyHolderService policyHolderService;
 	
-    List<PolicyHolder> findAllPolicyHolders(){
+    public List<PolicyHolder> findAllPolicyHolders(){
     	return this.policyHolderService.getAllPolicyHolders();
     }
     
-    PolicyHolder findPolicyHolder(long policyNo) {
+   public PolicyHolder findPolicyHolder(long policyNo) {
     	return this.policyHolderService.getPolicyHolderById(policyNo);
     }
 	
 }
-*/
