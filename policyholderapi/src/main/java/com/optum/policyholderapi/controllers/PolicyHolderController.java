@@ -3,6 +3,8 @@ package com.optum.policyholderapi.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,12 +24,18 @@ import com.google.gson.Gson;
 import com.optum.policyholderapi.models.PolicyHolder;
 import com.optum.policyholderapi.services.PolicyHolderService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/policyholders")
+@RefreshScope
+@Slf4j
 public class PolicyHolderController {
 	@Autowired
 	private PolicyHolderService policyHolderService;
 	private Gson gson;
+	 @Value("${message}")
+     private String message;
 	//adding policy holder
 	@PostMapping({"/v1.0"})
 	public ResponseEntity<?> addPolicyHolder(@RequestBody PolicyHolder policyHolder){
@@ -48,6 +56,7 @@ public class PolicyHolderController {
 	//Retrieve all Policy Holders
 	@GetMapping({"/v1.0"})
 	public List<PolicyHolder> getAllPolicyHolders(){
+		log.info(message);
 		return this.policyHolderService.getAllPolicyHolders();
 	}
 	
