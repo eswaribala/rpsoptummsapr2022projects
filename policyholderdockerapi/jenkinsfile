@@ -1,0 +1,26 @@
+#!groovy
+pipeline{
+ agent any
+ 
+  tools {
+    maven 'maven'
+  }
+ 
+ stages{
+ 
+   stage("build"){
+   
+       steps{
+       
+          bat "mvn -f ./policyholderdockerapi clean install -DskipTests"
+          bat "cd policyholderdockerapi  & docker-compose up -d"
+                                   
+       }
+   
+   }
+ 
+ }
+ 
+ 
+ 
+}
